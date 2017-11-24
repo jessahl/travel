@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <title>Create A New Travel Destination</title>
+</head>
+<body>
+ <div> 
+    {% if messages %}
+        {% for message in messages %}
+            <h4 class="alert alert-warning" role="alert">{{message}}</h4>
+        {% endfor %}
+    {% endif %}   
+    <div style="display:inline-block; margin-left:100px; margin-top:50px; position:absolute">
+        <div class="card-header" >Add A Trip</div>
+            <div class="card">
+                <form class="card-body" action="/create" method="POST">
+                    {% csrf_token %}
+                    <p>Destination: <input type="text" name="destination"></p>
+                    <p>Description: <input type="text" name="description"></p>
+                    <p>Travel Date From: <input type="date" name="date_from"></p>
+                    <p>Travel Date To: <input type="date" name="date_to"></p>
+                    <input type="hidden" name="created_by" value="{{request.session.id}}">
+                    <input type="Submit" vaule="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div> 
+    </div>
+    <div style = "display:inline-block; margin-left:900px; margin-top:50px; "> <a href="/travels">Home</a>  |  
+        <a href="/logout">Logout</a>
+    </div>
+
+</div> 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+      </body>
+    </html>
